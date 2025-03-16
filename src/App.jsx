@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SplashScreen from "./pages/SplashScreen";
 import SignUpScreen from "./pages/SignUpScreen";
 import LoginScreen from "./pages/LoginScreen";
@@ -6,13 +7,15 @@ import MenuScreen from "./pages/MenuScreen";
 
 function App() {
   return (
-    <>
-      <SplashScreen />
-      {/* <SignUpScreen />
-      <LoginScreen />
-      <ChatScreen />
-      <MenuScreen /> */}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SplashScreen />} />
+        <Route path="/signup" element={<SignUpScreen />} />
+        {/* <LoginScreen />
+        <ChatScreen />
+        <MenuScreen /> */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
