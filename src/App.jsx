@@ -11,8 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<SplashScreen />} />
         <Route path="/signup" element={<SignUpScreen />} />
-        {/* <LoginScreen />
-        <ChatScreen />
+        <Route path="/login" element={<LoginScreen />} />
+        {/* <ChatScreen />
         <MenuScreen /> */}
       </Routes>
     </BrowserRouter>

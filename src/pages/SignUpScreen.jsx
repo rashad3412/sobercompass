@@ -6,7 +6,7 @@ const SignUpScreen = () => {
     <section className="min-h-screen bg-teal flex items-center justify-center p-6 relative overflow-hidden">
       <div className="bg-cream rounded-2xl shadow-xl p-8 md:p-12 w-full max-w-md z-10">
         <header className="mb-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-teal mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-teal mb-2 font-roboto">
             Start Your Journey
           </h1>
           <p className="text-gray text-lg md:text-xl font-light">
