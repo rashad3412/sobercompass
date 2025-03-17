@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SplashScreen from "./pages/SplashScreen";
 import SignUpScreen from "./pages/SignUpScreen";
 import LoginScreen from "./pages/LoginScreen";
+import HomeScreen from "./pages/HomeScreen";
 import ChatScreen from "./pages/ChatScreen";
-import MenuScreen from "./pages/MenuScreen";
 
 function App() {
   return (
@@ -12,8 +12,8 @@ function App() {
         <Route path="/" element={<SplashScreen />} />
         <Route path="/signup" element={<SignUpScreen />} />
         <Route path="/login" element={<LoginScreen />} />
-        {/* <ChatScreen />
-        <MenuScreen /> */}
+        <Route path="/homescreen" element={<HomeScreen />} />
+        {/* <ChatScreen /> */}
       </Routes>
     </BrowserRouter>
   );
