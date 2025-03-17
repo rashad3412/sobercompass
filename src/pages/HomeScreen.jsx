@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FiMenu, FiMoreVertical, FiPlus } from "react-icons/fi";
+import compass from "../assets/compass.png";
 
 // Dummy chat data with affirmations
 const chatHistory = {
@@ -51,7 +52,7 @@ const HomeScreen = () => {
             <FiMenu size={24} />
           </button>
 
-          <h1 className="text-xl font-bold text-gray">SoberCompass</h1>
+          <img src={compass} alt="compass" width={60} className="text-center" />
 
           <div className="relative">
             <button
@@ -62,8 +63,8 @@ const HomeScreen = () => {
             </button>
 
             {showOptions && (
-              <div className="absolute right-0 mt-4 w-48 bg-cream rounded-lg shadow-lg py-2">
-                <button className="block w-full px-4 py-2 text-teal hover:bg-gray-100 text-left ">
+              <div className="absolute right-0 translate-x-4 mt-8 w-48 bg-cream rounded-lg shadow-lg py-2">
+                <button className="block w-full px-4 py-2 text-teal hover:bg-gray-100 text-left">
                   Sign Out
                 </button>
                 <button className="block w-full px-4 py-2 text-teal hover:bg-gray-100 text-left">
@@ -77,29 +78,37 @@ const HomeScreen = () => {
 
       {/* Hamburger Menu Content */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-20 flex">
-          <div className="w-72 bg-cream p-6 shadow-xl">
+        <div className="fixed top-23 left-0 z-20 flex ">
+          <div
+            className="w-72 bg-cream p-6 shadow-xl transform transition-transform duration-500 ease-in-out rounded-sm"
+            style={{
+              transform: isMenuOpen ? "translateX(0)" : "translateX(-100%)",
+            }}
+          >
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-teal text-xl font-bold">Your Compass</h2>
               <button
                 onClick={() => setIsMenuOpen(false)}
-                className="text-gray hover:text-teal"
+                className="text-gray hover:text-teal transition-colors duration-500"
               >
                 ✕
               </button>
             </div>
+
             <nav className="space-y-4">
               <button className="w-full text-left p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
                 🏆 Current Streak: 27 Days
               </button>
-              <button className="w-full text-left p-3 bg-white rounded-lg shadow-sm hover:shadow-md">
+              <button className="w-full text-left p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
                 📚 Recovery Resources
               </button>
-              <button className="w-full text-left p-3 bg-white rounded-lg shadow-sm hover:shadow-md">
+              <button className="w-full text-left p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
                 🧘 Daily Check-In
               </button>
             </nav>
           </div>
+
+          {/* Backdrop Overlay */}
           <div
             className="flex-1 bg-black/30"
             onClick={() => setIsMenuOpen(false)}
@@ -109,26 +118,21 @@ const HomeScreen = () => {
 
       {/* Main Content */}
       <main className="p-4">
-        {/* New Chat Button */}
-        <div className="mb-8">
-          <button className="w-full bg-teal text-cream py-4 px-6 rounded-xl font-medium hover:bg-teal-dark transition-colors shadow-lg flex items-center justify-center gap-2">
-            <FiPlus size={20} />
-            Start New Chat
-          </button>
-        </div>
-
         {/* Chat History */}
         <div className="space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-gray">Recent Chats</h2>
-            <button className="text-teal hover:text-teal-dark font-medium">
-              See More
+          <div className="flex items-center justify-between"></div>
+          {/* New Chat Button */}
+          <div className="mb-8">
+            <button className="w-full bg-teal text-cream py-4 px-6 rounded-xl font-medium hover:bg-teal-dark transition-colors shadow-lg flex items-center justify-center gap-2">
+              <FiPlus size={20} />
+              Start New Chat
             </button>
           </div>
+          <h2 className="text-center text-gray">Chat History</h2>
 
           {Object.entries(chatHistory).map(([date, chats]) => (
             <div key={date} className="space-y-4">
-              <h3 className="text-gray-600 font-medium">{date}</h3>
+              <h3 className="text-gray font-medium">{date}</h3>
               <div className="space-y-2">
                 {chats.map((chat) => (
                   <div
@@ -137,7 +141,7 @@ const HomeScreen = () => {
                   >
                     <div className="flex justify-between items-start mb-2">
                       <span className="text-sm text-cream">{chat.date}</span>
-                      <span className="text-sm bg-teal/10 text-cream px-2 py-1 rounded-full">
+                      <span className="text-sm bg-teal/10 text-cream px-2 py-1 rounded-full ">
                         {chat.affirmation}
                       </span>
                     </div>
