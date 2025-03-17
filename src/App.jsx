@@ -13,7 +13,7 @@ function App() {
         <Route path="/signup" element={<SignUpScreen />} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/homescreen" element={<HomeScreen />} />
-        {/* <ChatScreen /> */}
+        <Route path="/chatscreen" element={<ChatScreen />} />
       </Routes>
     </BrowserRouter>
   );
