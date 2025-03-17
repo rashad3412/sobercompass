@@ -51,7 +51,7 @@ const RecoveryRes = () => {
 
       <main className="p-6 max-w-6xl mx-auto">
         {/* Hero Section */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 font-roboto">
           <h1 className="text-4xl md:text-5xl font-bold text-teal mb-4">
             Your Recovery Toolkit
           </h1>
@@ -63,7 +63,7 @@ const RecoveryRes = () => {
 
         {/* Search Bar */}
         <div className="mb-12 bg-white rounded-xl shadow-sm p-4">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 font-montserrat">
             <input
               type="text"
               placeholder="Search resources..."
@@ -73,7 +73,7 @@ const RecoveryRes = () => {
               Filter
             </button>
           </div>
-          <div className="mt-4 flex space-x-2">
+          <div className="mt-4 flex space-x-2 font-roboto tracking-wide">
             {["All", "Emergency", "Community", "Tools"].map((tag) => (
               <span
                 key={tag}
@@ -86,7 +86,7 @@ const RecoveryRes = () => {
         </div>
 
         {/* Resource Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 font-montserrat">
           {resources.map((section, index) => (
             <div
               key={index}
@@ -118,7 +118,7 @@ const RecoveryRes = () => {
         </div>
 
         {/* Emergency Section */}
-        <div className="bg-red-50 rounded-2xl p-8 mb-12 shadow-lg border border-red-100">
+        <div className="bg-red-50 rounded-2xl p-8 mb-12 shadow-lg border border-red-100 font-poppins font-extrabold text-gray">
           <div className="flex items-center mb-4">
             <FiAlertTriangle className="text-red-500 w-8 h-8 mr-3" />
             <h2 className="text-2xl font-bold text-red-600">Immediate Help</h2>
@@ -137,7 +137,7 @@ const RecoveryRes = () => {
         </div>
 
         {/* Inspiration Section */}
-        <div className="bg-teal text-cream rounded-2xl p-8 shadow-xl">
+        <div className="bg-teal text-cream rounded-2xl p-8 shadow-xl font-montserrat">
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-4">Today's Mantra</h2>
             <p className="text-xl italic mb-4">
@@ -155,7 +155,7 @@ const RecoveryRes = () => {
         </div>
 
         {/* Community Spotlight */}
-        <div className="mt-12 bg-white rounded-2xl p-6 shadow-lg">
+        <div className="mt-12 bg-white rounded-2xl p-6 shadow-lg font-roboto">
           <h3 className="text-xl font-semibold text-gray mb-4">
             Community Picks
           </h3>

@@ -21,16 +21,18 @@ const CurrentStreak = () => {
             </div>
           </div>
           <h1 className="text-4xl font-bold text-gray mb-2">
-            <span className="bg-gradient-to-r from-teal to-teal-dark bg-clip-text text-teal">
+            <span className="bg-gradient-to-r from-teal to-teal-dark bg-clip-text text-teal font-roboto">
               UNSTOPPABLE FORCE
             </span>
           </h1>
-          <p className="text-xl text-gray">Alcohol-free since March 12</p>
+          <p className="text-xl text-gray font-roboto">
+            Alcohol-free since March 12
+          </p>
         </div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-teal">
+          <div className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-teal font-montserrat">
             <div className="flex items-center mb-2">
               <FiZap className="text-teal mr-2 w-6 h-6" />
               <h3 className="text-lg font-semibold text-gray">
@@ -38,10 +40,10 @@ const CurrentStreak = () => {
               </h3>
             </div>
             <p className="text-3xl font-bold text-gray">{streakDays} Days</p>
-            <p className="text-teal mt-2">Personal Best! 🎉</p>
+            <p className="text-teal mt-2 ">Personal Best! 🎉</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-teal">
+          <div className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-teal font-montserrat">
             <div className="flex items-center mb-2">
               <FiAward className="text-teal mr-2 w-6 h-6" />
               <h3 className="text-lg font-semibold text-gray">Total Sober</h3>
@@ -50,20 +52,20 @@ const CurrentStreak = () => {
             <p className="text-teal mt-2">90% Success Rate</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-teal">
-            <div className="flex items-center mb-2">
+          <div className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-teal font-montserrat">
+            <div className="flex items-center mb-2 ">
               <FiCompass className="text-teal mr-2 w-6 h-6" />
               <h3 className="text-lg font-semibold text-gray">
                 Next Milestone
               </h3>
             </div>
-            <p className="text-3xl font-bold text-gray">50 Days</p>
+            <p className="text-3xl font-bold text-gray ">50 Days</p>
             <p className="text-teal mt-2">3 days to go!</p>
           </div>
         </div>
 
         {/* Motivation Section */}
-        <div className="bg-teal text-cream rounded-2xl p-8 shadow-xl transform hover:scale-[1.01] transition-transform">
+        <div className="bg-teal text-cream rounded-2xl p-8 shadow-xl transform hover:scale-[1.01] transition-transform font-montserrat">
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-4">🔥 On Fire Streak 🔥</h2>
             <p className="text-lg mb-4">

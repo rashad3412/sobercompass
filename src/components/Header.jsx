@@ -36,11 +36,11 @@ const Header = () => {
             </button>
 
             {showOptions && (
-              <div className="absolute right-0 translate-x-4 mt-8 w-48 bg-cream rounded-lg shadow-lg py-2">
+              <div className="absolute right-0 translate-x-4 mt-8 w-48 bg-cream rounded-lg shadow-lg py-2 font-poppins font-extrabold text-xl">
                 <button className="block w-full px-4 py-2 text-teal hover:bg-gray-100 text-left">
                   Sign Out
                 </button>
-                <button className="block w-full px-4 py-2 text-teal hover:bg-gray-100 text-left">
+                <button className="block w-full px-4 py-2 text-teal hover:bg-gray-100 text-left ont-poppins ">
                   Settings
                 </button>
               </div>
@@ -68,9 +68,9 @@ const Header = () => {
               </button>
             </div>
 
-            <nav className="space-y-4 relative bottom-4">
+            <nav className="space-y-4 relative bottom-4 font-poppins font-extrabold text-gray text-lg">
               <Link to="/currentstreak">
-                <button className="w-full text-left p-3 mb-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
+                <button className="w-full text-left p-3 mb-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all ">
                   🏆 Current Streak: 27 Days
                 </button>
               </Link>

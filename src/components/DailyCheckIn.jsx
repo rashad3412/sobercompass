@@ -28,14 +28,14 @@ const DailyCheckIn = () => {
       <main className="p-6 max-w-2xl mx-auto">
         {/* Animated Header */}
         <div className="text-center mb-8 ">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-teal to-teal-dark bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-teal to-teal-dark bg-clip-text text-transparent font-roboto">
             Daily Compass
           </h1>
           <p className="text-gray mt-2">Let's chart today's journey 🌱</p>
         </div>
 
         {/* Mood Selector */}
-        <div className="bg-white rounded-3xl p-6 shadow-lg mb-8">
+        <div className="bg-white rounded-3xl p-6 shadow-lg mb-8 font-montserrat">
           <h2 className="text-xl font-semibold text-gray mb-4 flex items-center gap-2">
             <FiZap className="text-teal" />
             How's Your Spark Today?
@@ -60,7 +60,7 @@ const DailyCheckIn = () => {
         </div>
 
         {/* Energy Slider */}
-        <div className="bg-white rounded-3xl p-6 shadow-lg mb-8">
+        <div className="bg-white rounded-3xl p-6 shadow-lg mb-8 font-montserrat">
           <h2 className="text-xl font-semibold text-gray mb-6 flex items-center gap-2">
             <FiCoffee className="text-teal" />
             Energy Meter
@@ -85,7 +85,7 @@ const DailyCheckIn = () => {
         </div>
 
         {/* Gratitude Input */}
-        <div className="bg-white rounded-3xl p-6 shadow-lg mb-8">
+        <div className="bg-white rounded-3xl p-6 shadow-lg mb-8 font-montserrat">
           <h2 className="text-xl font-semibold text-gray mb-4 flex items-center gap-2">
             😇 Today's Silver Lining
           </h2>
@@ -99,7 +99,7 @@ const DailyCheckIn = () => {
         </div>
 
         {/* Submission */}
-        <button className="w-full bg-teal text-cream py-4 px-6 rounded-2xl font-bold text-lg shadow-lg hover:bg-teal-dark transition-all transform hover:scale-[1.02] active:scale-95">
+        <button className="w-full bg-teal text-cream py-4 px-6 rounded-2xl font-bold shadow-lg hover:bg-teal-dark transition-all transform hover:scale-[1.02] active:scale-95 font-poppins tracking-wide text-xl">
           Set Today's Course →
         </button>
 
