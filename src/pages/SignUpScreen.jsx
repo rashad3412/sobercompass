@@ -9,7 +9,7 @@ const SignUpScreen = () => {
           <h1 className="text-3xl md:text-4xl font-bold text-teal mb-2 font-roboto">
             Start Your Journey
           </h1>
-          <p className="text-gray text-lg md:text-xl font-light">
+          <p className="text-gray text:md md:text-xl font-light font-montserrat">
             Create Your sobercompass Account
           </p>
         </header>
@@ -17,7 +17,10 @@ const SignUpScreen = () => {
         <form className="space-y-6">
           <div className="space-y-4">
             <div>
-              <label className="block text-gray text-sm font-medium mb-2">
+              <label
+                className="block text-gray text-sm font-medium mb-2 font-roboto
+              "
+              >
                 Full Name
               </label>
               <input
@@ -28,7 +31,7 @@ const SignUpScreen = () => {
             </div>
 
             <div>
-              <label className="block text-gray text-sm font-medium mb-2">
+              <label className="block text-gray text-sm font-medium mb-2 font-roboto">
                 Email Address
               </label>
               <input
@@ -39,7 +42,7 @@ const SignUpScreen = () => {
             </div>
 
             <div>
-              <label className="block text-gray text-sm font-medium mb-2">
+              <label className="block text-gray text-sm font-medium mb-2 font-roboto">
                 Password
               </label>
               <input
@@ -50,12 +53,12 @@ const SignUpScreen = () => {
             </div>
           </div>
 
-          <button className="w-full bg-teal text-cream py-4 px-6 rounded-xl font-medium hover:bg-teal-dark transition-colors shadow-lg">
+          <button className="w-full bg-teal text-cream py-4 px-6 rounded-xl font-bold text-lg tracking-wide hover:bg-teal-dark transition-colors shadow-lg font-poppins ">
             Create Account
           </button>
         </form>
 
-        <p className="text-center mt-8 text-gray">
+        <p className="text-center mt-8 text-gray font-roboto">
           Already have an account?{" "}
           <Link to="/login" className="text-teal font-medium hover:underline">
             Login

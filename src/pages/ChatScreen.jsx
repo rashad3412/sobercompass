@@ -70,7 +70,7 @@ const ChatScreen = () => {
         <div className="text-center mb-6">
           <div className="inline-flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
             <FiSunrise className="text-teal mr-2" />
-            <span className="text-gray">Today's Chat</span>
+            <span className="text-gray font-roboto">Today's Chat</span>
           </div>
         </div>
 
@@ -94,20 +94,24 @@ const ChatScreen = () => {
                     : ""
                 }`}
               >
-                <p className="text-sm mb-1 opacity-70">{message.timestamp}</p>
-                <div className="space-y-2">
+                <p className="text-sm mb-1 opacity-70 font-roboto">
+                  {message.timestamp}
+                </p>
+                <div className="space-y-2 font-montserrat">
                   {message.type === "action" ? (
                     <div className="bg-cream/20 p-3 rounded-lg">
                       <p className="text-sm font-medium text-gray">
                         {message.content}
                       </p>
-                      <button className="mt-2 bg-teal text-cream px-4 py-2 rounded-full text-sm flex items-center">
+                      <button className="mt-2 bg-teal text-cream px-4 py-2 rounded-full text-sm flex items-center font-montserrat">
                         <FiHeart className="mr-2" />
                         {message.action}
                       </button>
                     </div>
                   ) : (
-                    <p className="text-lg leading-relaxed">{message.content}</p>
+                    <p className="text-lg leading-relaxed font-montserrat">
+                      {message.content}
+                    </p>
                   )}
                 </div>
               </div>
@@ -117,16 +121,16 @@ const ChatScreen = () => {
 
         {/* Quick Help */}
         <div className="grid grid-cols-2 gap-2 mb-4">
-          <button className="bg-white text-teal p-2 rounded-lg shadow-sm hover:shadow-md transition-all">
+          <button className="bg-white text-teal p-2 rounded-lg shadow-sm hover:shadow-md transition-all font-poppins tracking-wide font-medium">
             Emergency Resources
           </button>
-          <button className="bg-white text-teal p-2 rounded-lg shadow-sm hover:shadow-md transition-all">
+          <button className="bg-white text-teal p-2 rounded-lg shadow-sm hover:shadow-md transition-all font-poppins tracking-wide font-medium">
             Daily Check-In
           </button>
         </div>
 
         {/* Input Area */}
-        <div className="flex gap-2 bg-white p-2 rounded-xl shadow-lg">
+        <div className="flex gap-2 bg-white p-2 rounded-xl shadow-lg font-montserrat">
           <input
             type="text"
             value={newMessage}

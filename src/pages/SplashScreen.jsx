@@ -14,7 +14,7 @@ const SplashScreen = () => {
       </h1>
 
       {/* Subtitle */}
-      <p className="text-gray text-lg md:text-2xl font-light mb-8 text-center font-roboto">
+      <p className="text-gray text-lg md:text-2xl font-light mb-8 text-center font-montserrat">
         Your Guided Journey to Sustainable Sobriety
       </p>
 
@@ -28,7 +28,7 @@ const SplashScreen = () => {
       </section>
 
       {/* Description */}
-      <p className="text-gray text-lg md:text-xl text-center max-w-2xl mb-12 leading-relaxed font-roboto">
+      <p className="text-gray text-lg md:text-xl text-center max-w-2xl mb-12 leading-relaxed font-montserrat">
         A compassionate AI companion helping you navigate recovery, build
         resilience, and rediscover life's true direction - one mindful step at a
         time.
@@ -37,9 +37,9 @@ const SplashScreen = () => {
       {/* Get Started Button */}
       <button
         className="bg-teal text-gray px-8 py-4 rounded-full 
-        text-lg md:text-xl font-medium shadow-lg hover:bg-teal-dark 
-        transition-colors duration-300 active:scale-95 brightness-110"
-        onClick={() => navigate("/homescreen")}
+        text-xl md:text-xl font-bold shadow-lg hover:bg-teal-dark 
+        transition-colors duration-300 active:scale-95 brightness-110 font-poppins tracking-wide"
+        onClick={() => navigate("/login")}
       >
         Begin Your Journey
       </button>

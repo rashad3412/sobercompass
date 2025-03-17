@@ -26,7 +26,7 @@ const LoginScreen = () => {
           <h1 className="text-3xl md:text-4xl font-bold text-teal mb-2 font-roboto">
             Welcome Back
           </h1>
-          <p className="text-gray text-lg md:text-xl font-light">
+          <p className="text-gray text-md md:text-xl font-light font-montserrat">
             Continue Your sobercompass Journey
           </p>
         </header>
@@ -34,7 +34,7 @@ const LoginScreen = () => {
         <form className="space-y-6">
           <div className="space-y-4">
             <div>
-              <label className="block text-gray text-sm font-medium mb-2">
+              <label className="block text-gray text-sm font-medium mb-2 font-roboto">
                 Email Address
               </label>
               <input
@@ -45,7 +45,7 @@ const LoginScreen = () => {
             </div>
 
             <div>
-              <label className="block text-gray text-sm font-medium mb-2">
+              <label className="block text-gray text-sm font-medium mb-2 font-roboto">
                 Password
               </label>
               <input
@@ -63,24 +63,27 @@ const LoginScreen = () => {
                 id="remember"
                 className="w-4 h-4 border-gray-300 rounded text-teal focus:ring-teal"
               />
-              <label htmlFor="remember" className="ml-2 text-sm text-gray">
+              <label
+                htmlFor="remember"
+                className="ml-2 text-sm text-gray font-roboto"
+              >
                 Remember Me
               </label>
             </div>
             <Link
               to="/forgot-password"
-              className="text-sm text-teal hover:underline"
+              className="text-sm text-teal hover:underline font-roboto"
             >
               Forgot Password?
             </Link>
           </div>
 
-          <button className="w-full bg-teal text-cream py-4 px-6 rounded-xl font-medium hover:bg-teal-dark transition-colors shadow-lg">
+          <button className="w-full bg-teal text-cream py-4 px-6 rounded-xl font-bold hover:bg-teal-dark transition-colors shadow-lg font-poppins text-lg tracking-wide">
             Login
           </button>
         </form>
 
-        <p className="text-center mt-8 text-gray">
+        <p className="text-center mt-8 text-gray font-roboto">
           No Account?{" "}
           <Link to="/signup" className="text-teal font-medium hover:underline">
             Sign Up
