@@ -18,7 +18,14 @@ const Header = () => {
             <FiMenu size={24} />
           </button>
 
-          <img src={compass} alt="compass" width={60} className="text-center" />
+          <Link to="/">
+            <img
+              src={compass}
+              alt="compass"
+              width={60}
+              className="text-center"
+            />
+          </Link>
 
           <div className="relative">
             <button
@@ -61,24 +68,34 @@ const Header = () => {
               </button>
             </div>
 
-            <nav className="space-y-4">
-              <button className="w-full text-left p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
-                🏆 Current Streak: 27 Days
-              </button>
-              <button className="w-full text-left p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
-                📚 Recovery Resources
-              </button>
-              <button className="w-full text-left p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
-                🧘 Daily Check-In
-              </button>
-              <Link to="/chatscreen">
-                <button className="w-full text-left p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
-                  Start New Chat
+            <nav className="space-y-4 relative bottom-4">
+              <Link to="/currentstreak">
+                <button className="w-full text-left p-3 mb-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
+                  🏆 Current Streak: 27 Days
                 </button>
               </Link>
+
+              <Link to="/recoveryresources">
+                <button className="w-full text-left p-3 mb-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
+                  📚 Recovery Resources
+                </button>
+              </Link>
+
+              <Link to="/dailycheckin">
+                <button className="w-full text-left p-3 mb-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
+                  🧘 Daily Check-In
+                </button>
+              </Link>
+
+              <Link to="/chatscreen">
+                <button className="w-full text-left p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
+                  💬 Start New Chat
+                </button>
+              </Link>
+
               <Link to="/homescreen">
                 <button className="w-full text-left p-3 mt-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
-                  History
+                  ⏳ History
                 </button>
               </Link>
             </nav>
