@@ -39,7 +39,7 @@ const SplashScreen = () => {
         className="bg-teal text-gray px-8 py-4 rounded-full 
         text-xl md:text-xl font-bold shadow-lg hover:bg-teal-dark 
         transition-colors duration-300 active:scale-95 brightness-110 font-poppins tracking-wide"
-        onClick={() => navigate("/homescreen")}
+        onClick={() => navigate("/login")}
       >
         Begin Your Journey
       </button>
