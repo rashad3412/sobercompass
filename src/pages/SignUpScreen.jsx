@@ -24,24 +24,31 @@ const SignUpScreen = () => {
     setLoading(true);
     setError(null);
 
-    const response = await fetch("/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData), // Sends fullName, email, and password
-    });
+    try {
+      const response = await fetch("http://localhost:5001/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData), // Sends fullName, email, and password
+      });
 
-    const data = await response.json(); // Get the response from the backend
-    setLoading(false); // Stop loading
-
-    if (response.ok) {
-      console.log("User registered:", data);
-      // Optionally, redirect to login page after successful registration
-      // navigate("/login");
-    } else {
-      console.error("Error registering:", data.message);
-      setError(data.message); // Show error from backend
+      // Check if the response is ok (status 200-299)
+      if (response.ok) {
+        const data = await response.json(); // Get the response data from backend
+        console.log("User registered:", data);
+        // Optionally, redirect to login page after successful registration
+        // navigate("/login"); // If you are using react-router, uncomment this line
+      } else {
+        const data = await response.json(); // Get error message from response body
+        setError(data.message || "An error occurred during registration");
+      }
+      // eslint-disable-next-line no-unused-vars
+    } catch (err) {
+      setLoading(false);
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false); // Stop loading once the request is done
     }
   };
 
@@ -70,6 +77,7 @@ const SignUpScreen = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-teal focus:ring-2 focus:ring-teal/30 transition"
                 placeholder="John Doe"
+                required
               />
             </div>
 
@@ -84,6 +92,7 @@ const SignUpScreen = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-teal focus:ring-2 focus:ring-teal/30 transition"
                 placeholder="john@example.com"
+                required
               />
             </div>
 
@@ -98,6 +107,7 @@ const SignUpScreen = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-teal focus:ring-2 focus:ring-teal/30 transition"
                 placeholder="••••••••"
+                required
               />
             </div>
           </div>
