@@ -10,6 +10,7 @@ const LoginScreen = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -18,11 +19,13 @@ const LoginScreen = () => {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
+    // Validate form data
     if (!formData.email || !formData.password) {
       setError("Please fill out all fields.");
       setLoading(false);
@@ -30,7 +33,8 @@ const LoginScreen = () => {
     }
 
     try {
-      const response = await fetch("/auth/login", {
+      // Make the API request to your backend (updated to full URL)
+      const response = await fetch("http://localhost:5001/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,10 +46,13 @@ const LoginScreen = () => {
       setLoading(false);
 
       if (response.ok) {
+        // Store the token in localStorage
         localStorage.setItem("token", data.token);
         console.log("Login successful:", data);
-        navigate("/dashboard");
+        // Navigate to the dashboard after successful login
+        navigate("/homescreen");
       } else {
+        // Display error message from backend
         setError(data.message);
       }
     } catch (err) {
@@ -66,8 +73,10 @@ const LoginScreen = () => {
           </p>
         </header>
 
+        {/* Display error message */}
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
+        {/* Login Form */}
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
@@ -99,6 +108,7 @@ const LoginScreen = () => {
             </div>
           </div>
 
+          {/* Submit Button */}
           <button
             className="w-full bg-teal text-cream py-4 px-6 rounded-xl font-bold text-lg tracking-wide hover:bg-teal-dark transition-colors shadow-lg font-poppins"
             disabled={loading}
@@ -107,6 +117,7 @@ const LoginScreen = () => {
           </button>
         </form>
 
+        {/* Sign-up Link */}
         <p className="text-center mt-8 text-gray font-roboto">
           Don't have an account?{" "}
           <Link to="/signup" className="text-teal font-medium hover:underline">

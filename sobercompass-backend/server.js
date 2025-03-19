@@ -1,6 +1,6 @@
-// server.js
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors"); // Import CORS
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -8,6 +8,7 @@ const User = require("./models/User"); // Import the User model
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const mongoURI = process.env.MONGO_URI;
 
@@ -22,8 +23,23 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("Connected to MongoDB ✅"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+  .then(() => {
+    console.log("Connected to MongoDB ✅");
+
+    // Drop the `username_1` index if it exists
+    mongoose.connection.db
+      .collection("users")
+      .dropIndex("username_1", (err, result) => {
+        if (err) {
+          console.log("Error dropping index:", err);
+        } else {
+          console.log("Username index dropped:", result);
+        }
+      });
+  })
+  .catch((err) => {
+    console.error("MongoDB connection error:", err);
+  });
 
 // User Registration Route
 app.post("/auth/register", async (req, res) => {
@@ -52,6 +68,7 @@ app.post("/auth/register", async (req, res) => {
 
     res.status(201).json({ message: "User created successfully" });
   } catch (err) {
+    console.error("Error creating user:", err); // Log detailed error
     res.status(500).json({ message: "Server error", error: err });
   }
 });
