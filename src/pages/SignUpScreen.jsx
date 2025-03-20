@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignUpScreen = () => {
+  const navigate = useNavigate(); // Initialize navigation
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -38,7 +41,7 @@ const SignUpScreen = () => {
         const data = await response.json(); // Get the response data from backend
         console.log("User registered:", data);
         // Optionally, redirect to login page after successful registration
-        // navigate("/login"); // If you are using react-router, uncomment this line
+        navigate("/login");
       } else {
         const data = await response.json(); // Get error message from response body
         setError(data.message || "An error occurred during registration");
@@ -124,7 +127,7 @@ const SignUpScreen = () => {
 
           <p className="text-center text-sm mt-4 text-gray">
             Already have an account?{" "}
-            <Link to="/login" className="text-teal-600 hover:underline">
+            <Link to="/login" className="text-teal underline">
               Login here
             </Link>
           </p>
@@ -135,3 +138,17 @@ const SignUpScreen = () => {
 };
 
 export default SignUpScreen;
+
+// josh miller
+// miller1@gmail
+// miller12
+
+// hanks@gmail.com
+// hanks12
+
+// kash sumner
+// kask12@gmail
+// kash12
+
+// sumner5@gmail
+// jas12

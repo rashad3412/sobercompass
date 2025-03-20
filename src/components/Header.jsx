@@ -2,14 +2,34 @@ import React, { useState } from "react";
 import { FiMenu, FiMoreVertical, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import compass from "../assets/compass.png";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Header = () => {
+  const navigate = useNavigate(); // Initialize navigate
+
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Clear token from localStorage
+    navigate("/login"); // Redirect to login page
+  };
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
 
   const handleNavClick = () => {
     setIsMenuOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to top
+  };
+
+  // Toggle hamburger menu and close options menu
+  const handleToggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    setShowOptions(false); // Close the 3-dots menu when opening hamburger menu
+  };
+
+  // Toggle options menu and close hamburger menu
+  const handleToggleOptions = () => {
+    setShowOptions(!showOptions);
+    setIsMenuOpen(false); // Close the hamburger menu when opening the 3-dots menu
   };
 
   const menuItems = [
@@ -26,7 +46,7 @@ const Header = () => {
         <div className="flex items-center justify-between p-4">
           {/* Hamburger Menu Button */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={handleToggleMenu} // Use handleToggleMenu here
             className="text-gray hover:text-teal transition-colors"
           >
             <FiMenu size={24} />
@@ -45,7 +65,7 @@ const Header = () => {
           {/* More Options Button */}
           <div className="relative">
             <button
-              onClick={() => setShowOptions(!showOptions)}
+              onClick={handleToggleOptions} // Use handleToggleOptions here
               className="text-gray hover:text-teal transition-colors"
             >
               <FiMoreVertical size={24} />
@@ -53,7 +73,10 @@ const Header = () => {
 
             {showOptions && (
               <div className="absolute right-0 translate-x-4 mt-8 w-48 bg-cream rounded-lg shadow-lg py-2 font-poppins font-extrabold text-xl">
-                <button className="block w-full px-4 py-2 text-teal hover:bg-gray-100 text-left">
+                <button
+                  className="block w-full px-4 py-2 text-teal hover:bg-gray-100 text-left"
+                  onClick={handleLogout}
+                >
                   Sign Out
                 </button>
                 <button className="block w-full px-4 py-2 text-teal hover:bg-gray-100 text-left">
