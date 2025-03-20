@@ -18,28 +18,28 @@ if (!mongoURI) {
 }
 
 // Connect to MongoDB
-mongoose
-  .connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Connected to MongoDB ✅");
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-    // Drop the `username_1` index if it exists
-    mongoose.connection.db
-      .collection("users")
-      .dropIndex("username_1", (err, result) => {
-        if (err) {
-          console.log("Error dropping index:", err);
-        } else {
-          console.log("Username index dropped:", result);
-        }
-      });
-  })
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
-  });
+// .then(() => {
+//   console.log("Connected to MongoDB ✅");
+
+//   // Drop the `username_1` index if it exists
+//   mongoose.connection.db
+//     .collection("users")
+//     .dropIndex("username_1", (err, result) => {
+//       if (err) {
+//         console.log("Error dropping index:", err);
+//       } else {
+//         console.log("Username index dropped:", result);
+//       }
+//     });
+// })
+// .catch((err) => {
+//   console.error("MongoDB connection error:", err);
+// });
 
 // User Registration Route
 app.post("/auth/register", async (req, res) => {
