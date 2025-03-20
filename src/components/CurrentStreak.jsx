@@ -1,9 +1,33 @@
 import React from "react";
 import Header from "./Header";
 import { FiZap, FiAward, FiCompass } from "react-icons/fi";
+import { useState } from "react";
+import StatCard from "./StatCard";
+import Motivation from "./Motivation";
 
 const CurrentStreak = () => {
-  const streakDays = 47; // Example streak
+  const [startDate, setStartDate] = useState(""); // For storing the inputted date
+  const [streakDays, setStreakDays] = useState(null); // For storing calculated streak days
+  const [nextMilestone, setNextMilestone] = useState(50); // Default next milestone in days
+  const [successRate] = useState("90%"); // Hardcoded success rate for now
+
+  // Handle the input change and update streak calculation
+  const handleDateChange = (event) => {
+    const inputDate = event.target.value;
+    setStartDate(inputDate);
+
+    // Calculate streak days if input is valid
+    if (inputDate) {
+      const start = new Date(inputDate);
+      const currentDate = new Date();
+      const days = Math.floor((currentDate - start) / (1000 * 60 * 60 * 24));
+      setStreakDays(days);
+
+      // Dynamically calculate the next milestone based on streakDays
+      const milestone = Math.ceil(days / 50) * 50; // Example: milestones every 50 days
+      setNextMilestone(milestone + 50); // Set the next milestone
+    }
+  };
 
   return (
     <div className="min-h-screen bg-cream">
@@ -16,7 +40,7 @@ const CurrentStreak = () => {
             <FiCompass className="absolute -top-8 -right-8 text-teal/20 w-24 h-24" />
             <div className="bg-gradient-to-br from-teal to-teal-dark w-48 h-48 rounded-full flex items-center justify-center mx-auto shadow-xl mb-6">
               <span className="text-cream text-6xl font-bold">
-                {streakDays}
+                {streakDays !== null ? streakDays : "N/A"}
               </span>
             </div>
           </div>
@@ -26,79 +50,52 @@ const CurrentStreak = () => {
             </span>
           </h1>
           <p className="text-xl text-gray font-roboto">
-            Alcohol-free since March 12
+            Alcohol-free since{" "}
+            {startDate ? new Date(startDate).toDateString() : "N/A"}
           </p>
+        </div>
+
+        {/* Date Input */}
+        <div className="text-center mb-8">
+          <label
+            htmlFor="sobrietyStart"
+            className="block text-lg font-medium text-gray-700 mb-2"
+          >
+            Enter Your Sobriety Start Date
+          </label>
+          <input
+            id="sobrietyStart"
+            type="date"
+            value={startDate}
+            onChange={handleDateChange}
+            className="py-2 px-4 border border-gray-300 rounded-lg text-gray-700"
+          />
         </div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-teal font-montserrat">
-            <div className="flex items-center mb-2">
-              <FiZap className="text-teal mr-2 w-6 h-6" />
-              <h3 className="text-lg font-semibold text-gray">
-                Current Streak
-              </h3>
-            </div>
-            <p className="text-3xl font-bold text-gray">{streakDays} Days</p>
-            <p className="text-teal mt-2 ">Personal Best! 🎉</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-teal font-montserrat">
-            <div className="flex items-center mb-2">
-              <FiAward className="text-teal mr-2 w-6 h-6" />
-              <h3 className="text-lg font-semibold text-gray">Total Sober</h3>
-            </div>
-            <p className="text-3xl font-bold text-gray">289 Days</p>
-            <p className="text-teal mt-2">90% Success Rate</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-teal font-montserrat">
-            <div className="flex items-center mb-2 ">
-              <FiCompass className="text-teal mr-2 w-6 h-6" />
-              <h3 className="text-lg font-semibold text-gray">
-                Next Milestone
-              </h3>
-            </div>
-            <p className="text-3xl font-bold text-gray ">50 Days</p>
-            <p className="text-teal mt-2">3 days to go!</p>
-          </div>
+          <StatCard
+            icon={<FiZap className="text-teal mr-2 w-6 h-6" />}
+            title="Current Streak"
+            value={streakDays !== null ? `${streakDays} Days` : "N/A"}
+            subText="Personal Best! 🎉"
+          />
+          <StatCard
+            icon={<FiAward className="text-teal mr-2 w-6 h-6" />}
+            title="Total Sober"
+            value={streakDays !== null ? `${streakDays} Days` : "N/A"}
+            subText={`${successRate} Success Rate`}
+          />
+          <StatCard
+            icon={<FiCompass className="text-teal mr-2 w-6 h-6" />}
+            title="Next Milestone"
+            value={nextMilestone ? `${nextMilestone} Days` : "N/A"}
+            subText={`${nextMilestone - streakDays} days to go!`}
+          />
         </div>
 
         {/* Motivation Section */}
-        <div className="bg-teal text-cream rounded-2xl p-8 shadow-xl transform hover:scale-[1.01] transition-transform font-montserrat">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold mb-4">🔥 On Fire Streak 🔥</h2>
-            <p className="text-lg mb-4">
-              "You're rewriting your story one sober day at a time - this
-              momentum is your new normal."
-            </p>
-            <div className="flex justify-center space-x-4">
-              <button className="bg-cream text-teal px-6 py-2 rounded-full hover:bg-cream/90 transition">
-                Share Victory
-              </button>
-              <button className="border-2 border-cream px-6 py-2 rounded-full hover:bg-cream/10 transition">
-                Set New Goal
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Progress Calendar */}
-        <div className="mt-12 bg-white rounded-2xl p-6 shadow-lg">
-          <h3 className="text-xl font-semibold text-gray mb-4">
-            Weekly Tracker
-          </h3>
-          <div className="grid grid-cols-7 gap-2">
-            {[...Array(7)].map((_, i) => (
-              <div
-                key={i}
-                className="h-12 bg-teal/10 rounded-lg flex items-center justify-center"
-              >
-                <span className="text-teal font-medium">✓</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Motivation />
       </main>
     </div>
   );
