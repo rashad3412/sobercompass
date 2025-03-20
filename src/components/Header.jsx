@@ -53,14 +53,8 @@ const Header = () => {
           </button>
 
           {/* Logo */}
-          <Link to="/">
-            <img
-              src={compass}
-              alt="compass"
-              width={60}
-              className="text-center"
-            />
-          </Link>
+
+          <img src={compass} alt="compass" width={60} className="text-center" />
 
           {/* More Options Button */}
           <div className="relative">

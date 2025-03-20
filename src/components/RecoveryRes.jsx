@@ -9,38 +9,75 @@ import {
 } from "react-icons/fi";
 
 const RecoveryRes = () => {
-  // Dummy resources data
+  // Resources data with actual links
   const resources = [
     {
       category: "Articles",
       icon: <FiBook />,
       items: [
-        { title: "Rewiring Your Brain in Sobriety", source: "Recovery Today" },
-        { title: "Building New Social Habits", source: "Sobriety Journal" },
+        {
+          title: "Rewiring Your Brain in Sobriety",
+          source: "excel treatment center",
+          url: "https://exceltreatmentcenter.com/brain-rewiring-and-healing-during-addiction-recovery/",
+        },
+        {
+          title: "Building New Social Habits",
+          source: "Jefferson Health",
+          url: "https://www.jeffersonhealth.org/your-health/living-well/eight-tips-to-help-support-sobriety-at-social-gatherings",
+        },
       ],
     },
     {
       category: "Videos",
       icon: <FiFilm />,
       items: [
-        { title: "Morning Meditation Series", source: "YouTube" },
-        { title: "Sobriety Success Stories", source: "TED Talks" },
+        {
+          title: "Morning Meditation Series",
+          source: "YouTube",
+          url: "https://www.youtube.com/watch?v=8_f7ltCNSAQ",
+        },
+        {
+          title: "Sobriety Success Stories",
+          source: "TED Talks",
+          url: "https://www.ted.com/topics/sobriety",
+        },
       ],
     },
     {
       category: "Communities",
       icon: <FiUsers />,
       items: [
-        { title: "24/7 Support Chat", source: "SoberSpace" },
-        { title: "Local Meetups", source: "Meetup.com" },
+        {
+          title: "24/7 Support Chat",
+          source: "American Centers",
+          url: "https://americanaddictioncenters.org/rehab-guide/drug-addiction-chat",
+        },
+        {
+          title: "AA Online Meetings",
+          source: "Alcoholics Anonymous",
+          url: "https://aa-intergroup.org/meetings/",
+        },
+        {
+          title: "SMART Recovery",
+          source: "National Community",
+          url: "https://www.smartrecovery.org",
+        },
       ],
     },
     {
       category: "Tools",
       icon: <FiTool />,
       items: [
-        { title: "Craving Intensity Tracker", source: "SoberCompass Tool" },
-        { title: "Relapse Prevention Plan", source: "PDF Template" },
+        {
+          title: "Craving Intensity Tracker",
+          source: "SoberCompass Tool ",
+          url: "https://www.betweensessions.com/wp-content/uploads/2018/03/Monitoring_Your_Cravings_031918.pdf", // Internal link
+        },
+        {
+          title: "Relapse Prevention Plan",
+          source: "PDF Template",
+          url: "https://www.flcourts.gov/content/download/732700/file/RELAPSE",
+        },
       ],
     },
   ];
@@ -61,30 +98,6 @@ const RecoveryRes = () => {
           </p>
         </div>
 
-        {/* Search Bar */}
-        <div className="mb-12 bg-white rounded-xl shadow-sm p-4">
-          <div className="flex items-center space-x-4 font-montserrat">
-            <input
-              type="text"
-              placeholder="Search resources..."
-              className="flex-1 bg-cream/20 rounded-lg px-6 py-3 focus:outline-none focus:ring-2 focus:ring-teal/30"
-            />
-            <button className="bg-teal text-cream px-6 py-3 rounded-lg hover:bg-teal-dark transition-colors">
-              Filter
-            </button>
-          </div>
-          <div className="mt-4 flex space-x-2 font-roboto tracking-wide">
-            {["All", "Emergency", "Community", "Tools"].map((tag) => (
-              <span
-                key={tag}
-                className="bg-teal/10 text-teal px-3 py-1 rounded-full text-sm"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-
         {/* Resource Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 font-montserrat">
           {resources.map((section, index) => (
@@ -100,7 +113,13 @@ const RecoveryRes = () => {
               </div>
               <div className="space-y-4">
                 {section.items.map((item, idx) => (
-                  <div key={idx} className="group cursor-pointer">
+                  <a
+                    key={idx}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block cursor-pointer hover:no-underline"
+                  >
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-teal rounded-full mt-2"></div>
                       <div>
@@ -110,7 +129,7 @@ const RecoveryRes = () => {
                         <p className="text-sm text-gray-500">{item.source}</p>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>
@@ -124,50 +143,25 @@ const RecoveryRes = () => {
             <h2 className="text-2xl font-bold text-red-600">Immediate Help</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <button className="bg-white text-red-600 p-4 rounded-xl hover:bg-red-50 transition-colors">
-              Emergency Hotline
-            </button>
-            <button className="bg-white text-red-600 p-4 rounded-xl hover:bg-red-50 transition-colors">
-              Virtual Support Room
-            </button>
-            <button className="bg-white text-red-600 p-4 rounded-xl hover:bg-red-50 transition-colors">
+            <a
+              href="tel:1-800-662-4357"
+              className="bg-white text-red-600 p-4 rounded-xl hover:bg-red-50 transition-colors text-center hover:no-underline"
+            >
+              SAMHSA Hotline
+              <br />
+              <span className="text-sm font-normal">1-800-662-HELP (4357)</span>
+            </a>
+
+            <a
+              href="sms:741741"
+              className="bg-white text-red-600 p-4 rounded-xl hover:bg-red-50 transition-colors text-center hover:no-underline"
+            >
               Crisis Text Line
-            </button>
-          </div>
-        </div>
-
-        {/* Inspiration Section */}
-        <div className="bg-teal text-cream rounded-2xl p-8 shadow-xl font-montserrat">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold mb-4">Today's Mantra</h2>
-            <p className="text-xl italic mb-4">
-              "My strength grows with each sober choice"
-            </p>
-            <div className="flex justify-center space-x-4">
-              <button className="bg-cream text-teal px-6 py-2 rounded-full hover:bg-cream/90 transition">
-                Save Mantra
-              </button>
-              <button className="border-2 border-cream px-6 py-2 rounded-full hover:bg-cream/10 transition">
-                Share
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Community Spotlight */}
-        <div className="mt-12 bg-white rounded-2xl p-6 shadow-lg font-roboto">
-          <h3 className="text-xl font-semibold text-gray mb-4">
-            Community Picks
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-cream/20 p-4 rounded-xl">
-              <p className="font-medium text-gray mb-2">Most Saved Article</p>
-              <p className="text-teal">"The First 90 Days: What to Expect"</p>
-            </div>
-            <div className="bg-cream/20 p-4 rounded-xl">
-              <p className="font-medium text-gray mb-2">Popular Video Series</p>
-              <p className="text-teal">"Yoga for Recovery"</p>
-            </div>
+              <br />
+              <span className="text-sm font-normal">
+                Text "HELLO" to 741741
+              </span>
+            </a>
           </div>
         </div>
       </main>
