@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FiSend, FiHeart, FiSunrise } from "react-icons/fi";
 import Header from "../components/Header";
+import { Link } from "react-router-dom";
 
 // Dummy chat data
 const initialMessages = [
@@ -121,12 +122,17 @@ const ChatScreen = () => {
 
         {/* Quick Help */}
         <div className="grid grid-cols-2 gap-2 mb-4">
-          <button className="bg-white text-teal p-2 rounded-lg shadow-sm hover:shadow-md transition-all font-poppins tracking-wide font-medium">
-            Emergency Resources
-          </button>
-          <button className="bg-white text-teal p-2 rounded-lg shadow-sm hover:shadow-md transition-all font-poppins tracking-wide font-medium">
-            Daily Check-In
-          </button>
+          <Link to="/recoveryresources" className="block">
+            <button className="w-full bg-white text-teal p-2 rounded-lg shadow-sm hover:shadow-md transition-all font-poppins tracking-wide font-medium">
+              Emergency Resources
+            </button>
+          </Link>
+
+          <Link to="/dailycheckin" className="block">
+            <button className="w-full bg-white text-teal p-2 rounded-lg shadow-sm hover:shadow-md transition-all font-poppins tracking-wide font-medium">
+              Daily Check-In
+            </button>
+          </Link>
         </div>
 
         {/* Input Area */}
