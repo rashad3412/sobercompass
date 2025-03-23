@@ -33,8 +33,8 @@ const LoginScreen = () => {
     }
 
     try {
-      // Make the API request to your backend (updated to full URL)
-      const response = await fetch("http://localhost:5001/auth/login", {
+      // Updated API request with local IP address for mobile access
+      const response = await fetch("http://192.168.0.135:5001/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,6 +55,7 @@ const LoginScreen = () => {
         // Display error message from backend
         setError(data.message);
       }
+      // eslint-disable-next-line no-unused-vars
     } catch (err) {
       setLoading(false);
       setError("Something went wrong. Please try again.");
