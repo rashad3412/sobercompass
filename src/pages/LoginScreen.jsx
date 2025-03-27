@@ -25,21 +25,27 @@ const LoginScreen = () => {
     setLoading(true);
     setError(null);
 
-    // Validate form data
-    if (!formData.email || !formData.password) {
+    // Process email for mobile quirks
+    const processedEmail = formData.email
+      .trim() // Remove whitespace
+      .toLowerCase(); // Handle auto-capitalization
+
+    const processedPassword = formData.password.trim();
+
+    if (!processedEmail || !processedPassword) {
       setError("Please fill out all fields.");
       setLoading(false);
       return;
     }
 
     try {
-      // Updated API request with local IP address for mobile access
       const response = await fetch("http://192.168.0.135:5001/auth/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: processedEmail,
+          password: processedPassword,
+        }),
       });
 
       const data = await response.json();
