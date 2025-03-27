@@ -10,6 +10,13 @@ const LoginScreen = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Add mobile detection function here
+  const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+  };
+
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,20 +26,25 @@ const LoginScreen = () => {
     });
   };
 
-  // Handle form submission
+  // Handle form submission (updated version)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
-    // Process email for mobile quirks
-    const processedEmail = formData.email
-      .trim() // Remove whitespace
-      .toLowerCase(); // Handle auto-capitalization
+    // Create processed data copy
+    let submissionData = { ...formData };
 
-    const processedPassword = formData.password.trim();
+    // Mobile-specific processing
+    if (isMobileDevice()) {
+      submissionData = {
+        email: formData.email.trim().toLowerCase(),
+        password: formData.password.trim(),
+      };
+    }
 
-    if (!processedEmail || !processedPassword) {
+    // Validate form data
+    if (!submissionData.email || !submissionData.password) {
       setError("Please fill out all fields.");
       setLoading(false);
       return;
@@ -41,24 +53,20 @@ const LoginScreen = () => {
     try {
       const response = await fetch("http://192.168.0.135:5001/auth/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: processedEmail,
-          password: processedPassword,
-        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(submissionData), // Use processed data
       });
 
       const data = await response.json();
       setLoading(false);
 
       if (response.ok) {
-        // Store the token in localStorage
         localStorage.setItem("token", data.token);
         console.log("Login successful:", data);
-        // Navigate to the dashboard after successful login
         navigate("/homescreen");
       } else {
-        // Display error message from backend
         setError(data.message);
       }
       // eslint-disable-next-line no-unused-vars
