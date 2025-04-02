@@ -33,7 +33,7 @@ const Header = () => {
   };
 
   const menuItems = [
-    { to: "/currentstreak", label: "🏆 Current Streak: 27 Days" },
+    { to: "/currentstreak", label: "🏆 Current Streak" },
     { to: "/recoveryresources", label: "📚 Recovery Resources" },
     { to: "/dailycheckin", label: "🧘 Daily Check-In" },
     { to: "/chatscreen", label: "💬 Start New Chat" },

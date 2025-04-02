@@ -1,32 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import { FiZap, FiAward, FiCompass } from "react-icons/fi";
-import { useState } from "react";
 import StatCard from "./StatCard";
 import Motivation from "./Motivation";
 
 const CurrentStreak = () => {
-  const [startDate, setStartDate] = useState(""); // For storing the inputted date
-  const [streakDays, setStreakDays] = useState(null); // For storing calculated streak days
-  const [nextMilestone, setNextMilestone] = useState(50); // Default next milestone in days
-  const [successRate] = useState("90%"); // Hardcoded success rate for now
+  // Initialize state from localStorage
+  const [startDate, setStartDate] = useState(() => {
+    return localStorage.getItem("sobrietyStartDate") || "";
+  });
+  const [streakDays, setStreakDays] = useState(null);
+  const [nextMilestone, setNextMilestone] = useState(50);
+  const [successRate] = useState("90%");
 
-  // Handle the input change and update streak calculation
+  // Calculate and save streak whenever startDate changes
+  useEffect(() => {
+    if (startDate) {
+      const calculateStreak = () => {
+        const start = new Date(startDate);
+        const currentDate = new Date();
+
+        // Normalize both dates to midnight
+        start.setHours(0, 0, 0, 0);
+        currentDate.setHours(0, 0, 0, 0);
+
+        const days = Math.floor((currentDate - start) / (1000 * 60 * 60 * 24));
+        setStreakDays(days);
+
+        // Calculate next milestone
+        const milestone = Math.ceil((days + 1) / 50) * 50;
+        setNextMilestone(milestone);
+
+        // Save to localStorage
+        localStorage.setItem("sobrietyStartDate", startDate);
+      };
+
+      calculateStreak();
+    }
+  }, [startDate]);
+
   const handleDateChange = (event) => {
     const inputDate = event.target.value;
-    setStartDate(inputDate);
-
-    // Calculate streak days if input is valid
-    if (inputDate) {
-      const start = new Date(inputDate);
-      const currentDate = new Date();
-      const days = Math.floor((currentDate - start) / (1000 * 60 * 60 * 24));
-      setStreakDays(days);
-
-      // Dynamically calculate the next milestone based on streakDays
-      const milestone = Math.ceil(days / 50) * 50; // Example: milestones every 50 days
-      setNextMilestone(milestone + 50); // Set the next milestone
+    // Basic validation - can't select future dates
+    if (new Date(inputDate) > new Date()) {
+      alert("Please select a date that isn't in the future");
+      return;
     }
+    setStartDate(inputDate);
   };
 
   return (
@@ -61,13 +81,14 @@ const CurrentStreak = () => {
             htmlFor="sobrietyStart"
             className="block text-lg font-medium text-gray-700 mb-2"
           >
-            Enter Your Sobriety Start Date
+            {streakDays === null ? "Start Your Journey" : "Update Your Date"}
           </label>
           <input
             id="sobrietyStart"
             type="date"
             value={startDate}
             onChange={handleDateChange}
+            max={new Date().toISOString().split("T")[0]} // Prevent future dates
             className="py-2 px-4 border border-gray-300 rounded-lg text-gray-700"
           />
         </div>
@@ -90,7 +111,11 @@ const CurrentStreak = () => {
             icon={<FiCompass className="text-teal mr-2 w-6 h-6" />}
             title="Next Milestone"
             value={nextMilestone ? `${nextMilestone} Days` : "N/A"}
-            subText={`${nextMilestone - streakDays} days to go!`}
+            subText={
+              streakDays
+                ? `${nextMilestone - streakDays} days to go!`
+                : "Set your date"
+            }
           />
         </div>
 
