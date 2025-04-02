@@ -6,46 +6,30 @@ import Motivation from "./Motivation";
 
 const CurrentStreak = () => {
   // Initialize state from localStorage
-  const [startDate, setStartDate] = useState(() => {
-    return localStorage.getItem("sobrietyStartDate") || "";
-  });
+  const [startDate, setStartDate] = useState(
+    () => localStorage.getItem("sobrietyStartDate") || ""
+  );
   const [streakDays, setStreakDays] = useState(null);
   const [nextMilestone, setNextMilestone] = useState(50);
-  const [successRate] = useState("90%");
 
-  // Calculate and save streak whenever startDate changes
+  // Calculate streak days and next milestone
   useEffect(() => {
-    if (startDate) {
-      const calculateStreak = () => {
-        const start = new Date(startDate);
-        const currentDate = new Date();
+    if (!startDate) return;
 
-        // Normalize both dates to midnight
-        start.setHours(0, 0, 0, 0);
-        currentDate.setHours(0, 0, 0, 0);
+    const start = new Date(startDate).setHours(0, 0, 0, 0);
+    const today = new Date().setHours(0, 0, 0, 0);
+    const days = Math.floor((today - start) / (1000 * 60 * 60 * 24));
 
-        const days = Math.floor((currentDate - start) / (1000 * 60 * 60 * 24));
-        setStreakDays(days);
-
-        // Calculate next milestone
-        const milestone = Math.ceil((days + 1) / 50) * 50;
-        setNextMilestone(milestone);
-
-        // Save to localStorage
-        localStorage.setItem("sobrietyStartDate", startDate);
-      };
-
-      calculateStreak();
-    }
+    setStreakDays(days);
+    setNextMilestone(Math.ceil((days + 1) / 50) * 50);
+    localStorage.setItem("sobrietyStartDate", startDate);
   }, [startDate]);
 
+  // Handle date input change
   const handleDateChange = (event) => {
     const inputDate = event.target.value;
-    // Basic validation - can't select future dates
-    if (new Date(inputDate) > new Date()) {
-      alert("Please select a date that isn't in the future");
-      return;
-    }
+    if (new Date(inputDate) > new Date())
+      return alert("Please select a past date.");
     setStartDate(inputDate);
   };
 
@@ -60,7 +44,7 @@ const CurrentStreak = () => {
             <FiCompass className="absolute -top-8 -right-8 text-teal/20 w-24 h-24" />
             <div className="bg-gradient-to-br from-teal to-teal-dark w-48 h-48 rounded-full flex items-center justify-center mx-auto shadow-xl mb-6">
               <span className="text-cream text-6xl font-bold">
-                {streakDays !== null ? streakDays : "N/A"}
+                {streakDays ?? "N/A"}
               </span>
             </div>
           </div>
@@ -98,19 +82,19 @@ const CurrentStreak = () => {
           <StatCard
             icon={<FiZap className="text-teal mr-2 w-6 h-6" />}
             title="Current Streak"
-            value={streakDays !== null ? `${streakDays} Days` : "N/A"}
+            value={`${streakDays ?? "N/A"} Days`}
             subText="Personal Best! 🎉"
           />
           <StatCard
             icon={<FiAward className="text-teal mr-2 w-6 h-6" />}
             title="Total Sober"
-            value={streakDays !== null ? `${streakDays} Days` : "N/A"}
-            subText={`${successRate} Success Rate`}
+            value={`${streakDays ?? "N/A"} Days`}
+            subText="90% Success Rate"
           />
           <StatCard
             icon={<FiCompass className="text-teal mr-2 w-6 h-6" />}
             title="Next Milestone"
-            value={nextMilestone ? `${nextMilestone} Days` : "N/A"}
+            value={`${nextMilestone ?? "N/A"} Days`}
             subText={
               streakDays
                 ? `${nextMilestone - streakDays} days to go!`
