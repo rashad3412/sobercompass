@@ -2,8 +2,6 @@
 
 A compassionate companion for your sobriety journey, providing daily support, tracking, and community connection.
 
-![App Screenshot](/public/screenshot.png) <!-- Replace with actual path -->
-
 ## ✨ Features
 
 - **Daily Check-ins** 📅 - Mood and craving tracker
